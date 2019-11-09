@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+    <ion-title >Hacer una solicitud</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list>
+    <ion-list-header>
+     <strong> Documentos disponibles</strong>
+    </ion-list-header>
+
+    <ion-item *ngFor = "let documento of documentos">
+      <ion-label>
+        <h2>{{ documento.nombre }}</h2>
+        <h3>{{ documento.institucion.nombre }}</h3>
+        <p>{{ documento.descripcion }}</p>
+      </ion-label>
+      <ion-button (click)='agregarASolicitud(documento.id)'><ion-icon slot="end" name="add"></ion-icon></ion-button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+      <ion-title>Seleccionados {{ documentosSeleccionados.length }}</ion-title>
+    </ion-toolbar>
+  </ion-footer>
