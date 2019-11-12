@@ -48,7 +48,7 @@ export class LoginPage {
             cancelButtonText: 'No'
           }).then(response => {
             if(response.value){
-              this._router.navigate(['/main']);
+              this._router.navigate(['/']);
             }
           })
         }    
