@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { GenericService } from '../services/generic-service.service';
+import { ModalController } from '@ionic/angular';
 import Swal from 'sweetalert2';
+
 import { Estudiante } from '../models/Estudiante';
 import { SolicitudDTO } from '../models/Solicitud';
+import { SeleccionadosPage } from  '../seleccionados/seleccionados.page';
 
 @Component({
   selector: 'app-main',
@@ -22,7 +25,7 @@ export class MainPage implements OnInit {
   editMode: boolean = false;
   documentosSeleccionados: Array<any> = [];
 
-  constructor(private genericService: GenericService) {
+  constructor(private genericService: GenericService, public modalController: ModalController) {
       
     }
 
@@ -54,6 +57,16 @@ export class MainPage implements OnInit {
       }
     });
   }
+
+  async showSeleccionados(){
+    const documentos: any[] = this.documentosSeleccionados
+    
+    const modal = await this.modalController.create({
+      component: SeleccionadosPage,
+      componentProps: { documentos }
+    });
+    return await modal.present();
+  }
   
   getSolicitudes(){
     this.genericService.getAll(this.componentUrl, (solicitudes) => {
@@ -72,10 +85,13 @@ export class MainPage implements OnInit {
   }
 
   enviarSolicitud(estudianteId: string, documentosSeleccionados: any){
-      if(documentosSeleccionados.length > 0){
-        
-        let solicitud = new SolicitudDTO(estudianteId, documentosSeleccionados);
-        
+    let documentosIdx: any[];
+      this.documentos.forEach(documento => {
+        documentosIdx.push(documento.id);
+      })
+
+    if(documentosSeleccionados.length > 0){
+        let solicitud = new SolicitudDTO(estudianteId, documentosIdx);
         this.genericService.crear(this.componentUrl, solicitud, () => {
           this.documentosSeleccionados = [];
         })

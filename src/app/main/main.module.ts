@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { MainPage } from './main.page';
+import { SeleccionadosPageModule } from '../seleccionados/seleccionados.module';
+import { SeleccionadosPage } from '../seleccionados/seleccionados.page';
 
 const routes: Routes = [
   {
@@ -19,8 +21,11 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SeleccionadosPageModule
   ],
-  declarations: [MainPage]
+  declarations: [
+  MainPage
+]
 })
 export class MainPageModule {}

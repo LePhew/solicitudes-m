@@ -3,7 +3,8 @@
       <ion-buttons slot="start">
         <ion-back-button></ion-back-button>
       </ion-buttons>
-    <ion-title >Hacer una solicitud</ion-title>
+    <ion-title center>Hacer una solicitud</ion-title>
+       <ion-button size="small" slot="end" (click)="enviarSolicitud()"> Enviar </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -19,7 +20,7 @@
         <h3>{{ documento.institucion.nombre }}</h3>
         <p>{{ documento.descripcion }}</p>
       </ion-label>
-      <ion-button (click)='agregarASolicitud(documento.id)'><ion-icon slot="end" name="add"></ion-icon></ion-button>
+      <ion-button (click)='agregarASolicitud(documento)'><ion-icon slot="end" name="add"></ion-icon></ion-button>
     </ion-item>
   </ion-list>
 
@@ -27,6 +28,6 @@
 
 <ion-footer>
     <ion-toolbar>
-      <ion-title>Seleccionados {{ documentosSeleccionados.length }}</ion-title>
+      <ion-title>Seleccionados {{ documentosSeleccionados.length }}</ion-title><ion-button size="small" padded slot="end" (click)="showSeleccionados()">Ver</ion-button>
     </ion-toolbar>
-  </ion-footer>
+</ion-footer>
