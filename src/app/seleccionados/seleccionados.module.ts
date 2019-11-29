@@ -14,7 +14,6 @@ import { SeleccionadosPage } from './seleccionados.page';
     IonicModule
   ],
   declarations: [SeleccionadosPage],
-  exports:[SeleccionadosPage],
   entryComponents: [SeleccionadosPage]
 })
 export class SeleccionadosPageModule {}
