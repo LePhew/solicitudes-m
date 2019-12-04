@@ -54,7 +54,7 @@ export class SeleccionadosPage implements OnInit {
         let solicitud = new SolicitudDTO(this.estudiante.id, documentosIdx);
         this.genericService.crear(this.componentUrl, solicitud, () => {
           this.documentos = [];
-          this.dismiss
+          this.dismiss();
         })
       }
       else{
