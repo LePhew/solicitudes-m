@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 import { GenericService } from '../services/generic-service.service';
@@ -21,7 +22,7 @@ export class SeleccionadosPage implements OnInit {
   matricula: string = localStorage.getItem('matricula');
   estudiante: Estudiante;
 
-  constructor(public modalController: ModalController, private genericService: GenericService) { }
+  constructor(public modalController: ModalController, private genericService: GenericService, private router: Router) { }
 
   ngOnInit() {
     this.getEstudiante();
@@ -54,7 +55,8 @@ export class SeleccionadosPage implements OnInit {
         let solicitud = new SolicitudDTO(this.estudiante.id, documentosIdx);
         this.genericService.crear(this.componentUrl, solicitud, () => {
           this.documentos = [];
-          this.dismiss();
+          //this.dismiss();
+          this.router.navigate(['/menu']);
         })
       }
       else{

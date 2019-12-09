@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 import { GenericService } from '../services/generic-service.service';
 import { Estudiante } from '../models/Estudiante';
+import { Solicitud } from '../models/Solicitud';
 
 
 @Component({
@@ -13,10 +14,10 @@ import { Estudiante } from '../models/Estudiante';
 export class MenuPage implements OnInit {
 
   readonly estudianteUrl: string = "estudiante/";
-  estudiante: Estudiante;
   estudianteMat = localStorage.getItem("matricula");
+  estudiante: Estudiante;
 
-  constructor(private genericService: GenericService, private menu: MenuController) { }
+  constructor(private genericService: GenericService, private router: Router) { }
 
   ngOnInit() {
     this.getEstudiante();
@@ -25,14 +26,17 @@ export class MenuPage implements OnInit {
 
   getEstudiante() {
     this.genericService.getByMat(this.estudianteUrl + "bymat/", this.estudianteMat, (estudiante: any) => {
-      console.log(estudiante);
       this.estudiante = estudiante;
     });
   }
 
-  openFirst() {
-    this.menu.enable(true, 'first');
-    this.menu.open('first');
+  nuevaSolicitud(){
+    this.router.navigate(['/main']);
   }
+
+  verPendientes(){
+    this.router.navigate(['/ver-solicitudes']);
+  }
+
 
 }

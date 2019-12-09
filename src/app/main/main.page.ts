@@ -30,6 +30,7 @@ export class MainPage implements OnInit {
   }
 
   ngOnInit() {
+    this.documentosSeleccionados = [];
     this.getEstudiante();
     this.getDocumentos();
 
